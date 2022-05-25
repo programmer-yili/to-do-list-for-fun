@@ -1,14 +1,12 @@
 <template>
   <div class="task">
-    <div class="checkbox"></div>
-    <div :class="`content ${doneClass}`">任务描述</div>
+    <div :class="`iconfont icon-${done ? 'checked' : 'uncheck'}`"></div>
+    <div :class="`content ${done ? 'done' : ''}`">任务描述</div>
   </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
-
-const props = defineProps({
+defineProps({
   done: {
     type: Boolean,
     default: () => {
@@ -16,25 +14,21 @@ const props = defineProps({
     },
   },
 });
-
-const doneClass = ref(props.done ? "done" : "");
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .task {
   height: 40px;
   display: flex;
   align-items: center;
   font-size: 18px;
-  .checkbox {
-    width: 15px;
-    height: 15px;
-    border: solid black 1px;
-    border-radius: 3px;
+  .iconfont {
+    font-size: 26px;
     margin-right: 8px;
   }
   .content {
     margin-right: 8px;
+    font-size: 1em;
     &.done {
       text-decoration: line-through;
     }
